@@ -23,8 +23,8 @@ class ProductController extends Controller
     }
     public function insert(Request $request)
     {
-        $product = new Pro();
-        $product->Name = $request->Name;
+        $product = new Product();
+        $product->name = $request->name;
         $product->description = $request->description;
         if ($request->hasFile('image')) {
 
@@ -34,13 +34,13 @@ class ProductController extends Controller
 
             Image::make(public_path() . '/admin/upload/product/' . $filename);
 
-            $product->image = $filename;
+            
         } else {
 
             $product->image = 'nopic.jpg';
         }
 
-        $product->save();
+     
         return redirect()->route('product');
     }
     public function editform($id)
